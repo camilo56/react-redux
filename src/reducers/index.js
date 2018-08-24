@@ -1,6 +1,8 @@
-import {combineReducers} from 'react-redux';
-import usersReducer from "./reducer-users";
+import {combineReducers} from 'redux';
+import postReducer from "./post-reducer";
 
-export const allReducers = combineReducers({
-    users: usersReducer
+const rootReducer = combineReducers({
+    posts: postReducer
 });
+
+export default rootReducer;
