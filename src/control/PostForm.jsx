@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { createPosts } from './../actions/postActions'
 
 class PostsFrom extends Component {
     constructor(){
@@ -14,20 +16,8 @@ class PostsFrom extends Component {
     onSubmit = e => {
         e.preventDefault();
 
-        const post = {
-            title: this.state.title,
-            body: this.state.body,
-        }
-
-        fetch('https://jsonplaceholder.typicode.com/posts', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(post)
-        })
-        .then(info => info.json())
-        .then(info => console.log(info))
+        this.props.createPosts({ title: this.state.title,
+                                body: this.state.body})
     }
 
     render () {
@@ -51,4 +41,4 @@ class PostsFrom extends Component {
     }
 }
 
-export default PostsFrom
+export default connect(null, { createPosts })(PostsFrom);
